@@ -39,3 +39,18 @@ console.log(c());
 console.log(c());
 console.log(c());
 console.log(c());
+
+
+//use rest parameter to accept any number of scores and return the total.
+
+function getscore(...score)
+{
+    let total = 0;
+    score.forEach(function (val)
+    {
+        total = total + val;
+    });
+    return total;
+}
+
+console.log(getscore(1,2,3,4,5,6,7,8,9));
