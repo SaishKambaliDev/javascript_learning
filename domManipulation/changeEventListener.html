@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .heading{
+            text-transform: capitalize;
+        }
+    </style>
+</head>
+<body>
+    <h3 class="heading">Select your device</h3>
+    <select>
+        <option selected disabled> Choose your device </option>
+        <option value="samsung">Samsung</option>
+        <option value="mi">MI</option>
+        <option value="apple">Apple</option>
+    </select>
+   
+    <script>
+        let option = document.querySelector("select");
+        let h1 = document.querySelector("h3");
+
+        option.addEventListener("change", function (evt) {
+            h1.textContent = `${evt.target.value}` + ` device selected!`;
+        });
+    </script>
+
+</body>
+</html>
