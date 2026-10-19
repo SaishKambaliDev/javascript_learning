@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Gilroy";
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        #main{
+            height: 100%;
+            width: 100%;
+            background-color: #222;
+        }
+
+        #nav{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            width: 100%;
+            height: 100px;
+            background-color: #444;
+        }
+
+        a{
+            color: white;
+        }
+
+        button{
+            border-radius: 5px;
+            padding: 12px 22px;
+            background-color: red;
+            border: none;
+            font-weight: 600;
+            font-size: 20px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div id="nav">
+            <a href="">home</a>
+            <a href="">About</a>
+            <button>CLick and follow</button>
+        </div>
+    </div>
+    <script>
+        document.querySelector("#nav").addEventListener("click", function(){
+            alert("Clicked");
+        });
+    </script>
+</body>
+</html>
