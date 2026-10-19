@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Gilroy";
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            padding-left: 20px;
+            padding-top: 20px;
+        }
+
+        #main {
+            height: 100%;
+            width: 100%;
+            background-color: #222;
+        }
+
+        .linethrough{
+            text-decoration: line-through;
+        }
+
+    </style>
+</head>
+
+<body>
+    <ul id="abcd">
+        <li>apple</li>
+        <li>banana</li>
+        <li>mango</li>
+        <li>cherry</li>
+        <li>strawberry</li>
+    </ul>
+
+    <script>
+        let abcd = document.querySelector("#abcd");
+
+        abcd.addEventListener("click", function (dets) {
+            dets.target.classList.toggle("linethrough");
+        });
+    </script>
+</body>
+
+</html>
