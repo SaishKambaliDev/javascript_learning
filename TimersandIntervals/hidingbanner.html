@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Gilroy";
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            padding: 10px;
+        }
+
+        #hero{
+            display:flex;
+            background-color: aqua;
+            border-radius: 12px;
+            height: 400px;
+            width: 100%;   
+            padding: 20px; 
+
+            justify-content: center;
+            align-items: center;
+        }
+
+        p{
+            font-family: 'Times New Roman';
+            user-select: none;
+            font-weight: bold;
+            font-size: 20px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="hero">
+        <p>Banner will disappear after 3 seconds.</p>
+    </div>
+
+    <script>
+        let tm = setTimeout(function (){
+            document.querySelector("#hero").style.display = "none";
+        }, 3000);
+    </script>
+</body>
+</html>
