@@ -64,3 +64,17 @@ body {
   color: #ddd;
   line-height: 1.4;
 }
+
+#nouser{
+    height:50px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    background-color: rgb(104, 104, 104);
+    position: relative;
+    display: flex;
+    color: white;
+    font-weight: bold;
+    display: none;
+}
