@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class User{
+            constructor(name, email, password){
+                this.name = name;
+                this.email = email;
+                this.password = password;
+                this.role = "user";
+            }
+
+            role(){
+                return `Role is ${this.role}`;
+            }
+
+            write(text){
+                let h1 = document.createElement("h1");
+                h1.textContent = `${this.name}: ${text}`;
+                document.body.appendChild(h1);
+            }
+        }
+
+        class Admin extends User{
+            constructor(name, email, password){
+                super(name, email, password);
+            }
+
+            remove(){
+                document.querySelectorAll("h1").forEach(function(ele){
+                    ele.remove();
+                });
+            }
+        }
+
+        let us = new User("saish", "saish@gmail.com", "1234");
+        let up = new User("sam", "sam@gmail.com", "345");
+
+        let ad = new Admin("admin", "admin@gmail.com", "1234");
+    </script>
+</body>
+</html>
