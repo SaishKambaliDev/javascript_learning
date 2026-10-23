@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Cards</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        button {
+            background-color: blue !important;
+            color: white !important;
+            height: 25px;
+            font-size: 12px !important;
+            padding-right: 10px !important;
+            padding-left: 10px !important;
+            border-radius: 5px !important;
+            align-items: center !important;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-[#0f1726] flex flex-col items-center justify-center gap-5 p-5">
+
+    <div id="cards" class="flex flex-wrap justify-center gap-5"></div>
+
+    <button id="refresh">Refresh Users</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
