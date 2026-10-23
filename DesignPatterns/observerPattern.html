@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class YoutubeChannel {
+            constructor() {
+                this.subscribers = [];
+            }
+
+            subscribe(user) {
+                this.subscribers.push(user);
+                user.update("You have subscribed the channel.");
+            }
+
+            unsubscribe(user) {
+                this.subscribers = this.subscribers.filter((sub) => sub !== user);
+                user.update("You have unsubscribed to the channel.");
+            }
+            notify(message) {
+                this.subscribers.forEach((sub) => sub.update(message));
+            }
+        }
+
+        class User {
+            constructor(name) {
+                this.name = name;
+            }
+
+            update(data) {
+                console.log(`${this.name}` + " " + `${data}`);
+            }
+        }
+
+        let sheryians = new YoutubeChannel();
+        let user1 = new User("harsh");
+        let user2 = new User("Amit");
+
+        sheryians.subscribe(user1);
+        sheryians.subscribe(user2);
+
+        sheryians.notify(", welcome to the community!!");
+
+
+    </script>
+</body>
+
+</html>
