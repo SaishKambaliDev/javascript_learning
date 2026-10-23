@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lazy Image Loading</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Lazy Image Loading</h1>
+
+    <div class="spacer">
+        Scroll down to load images
+    </div>
+
+    <div class="image-container">
+        <img
+            class="lazy-img"
+            data-src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=900"
+            alt="Beautiful mountain landscape"
+        >
+
+        <div class="divider"></div>
+
+        <img
+            class="lazy-img"
+            data-src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=900"
+            alt="Mountain lake"
+        >
+
+        <div class="divider"></div>
+
+        <img
+            class="lazy-img"
+            data-src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=900"
+            alt="Forest scenery"
+        >
+
+        <div class="divider"></div>
+
+        <img
+            class="lazy-img"
+            data-src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900"
+            alt="Ocean and beach"
+        >
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
