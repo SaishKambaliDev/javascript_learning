@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function createProduct(name, price) {
+            let stock = 10;
+            return {
+                name,
+                price,
+                checkStock() {
+                    console.log(stock);
+                },
+                buy(qty) {
+                    if (qty <= stock) {
+                        stock -= qty;
+                        console.log(`${qty} pieces booked - ${stock} pieces left.`);
+                    }
+                    else {
+                        console.error(`we only have ${stock} pieces left.`);
+                    }
+                },
+                refill(qty) {
+                    stock += qty;
+                    console.log(`refilled the stock - ${stock} pieces now.`);
+                },
+            };
+        }
+
+        let phone = createProduct("phone", 700000);
+        phone.buy(6);
+    </script>
+</body>
+
+</html>
