@@ -1,0 +1,355 @@
+
+variable scope: local, global and functional
+//scope hai ke aap created variables and functions kaha tak use kar paoge
+
+//function scope - function ke andar hi use ho sakti hai
+//global scope - poore code mein kahi bhi use ho sakti hai
+//block scope - {} braces mein hi use ho sakti hai
+
+//agar aapka code kisi bhi {} ke andar nahi hai to aapka code global hai
+
+===================================
+
+//execution context
+
+js sabse pahle jaise hi apka function dekhta hai sabse pahle js banaata hai exdecution context, ye ek process hai jo ki dfodifferent phses mein chalta hai, memory phase and doosre ke naam hai execution phase
+
+==========================
+
+==========================
+
+//lexical scoping and dynamic scoping
+
+//js mein lexical scoping hota hai, ki app kaha par physically available ho ye poori tarekke se depend krta hai ki app kya access kro paoge
+
+function abcd()
+{
+    let a = 12;
+    function defg() {
+        console.log(a);
+    }
+}
+
+===============================
+
+dynamic scoping -> kaha se call ke rahe ho uspe depend krega ki kya value milegi
+
+
+let a = 12;
+function abcd() {
+    console.log(a);
+}
+
+function defg() {
+    let a = 13;
+
+    abcd();
+}
+
+defg();
+
+=============================
+
+//closures hote hai functions jo ki kisi parent function ke andar ho aur andar waala function return ho raha ho, and return9ng functionn use kre parent function ka koi variable
+
+function abcd()
+{
+    let a =12;
+    return function (){
+        console.log(a);
+    };
+}
+
+======================
+
+//private variables
+// global pollution
+
+==================
+
+ye sach hai ki function ke khatam hone pe aapka function and uske variables khatam hojate hai, par jab nhi closire banta hai to aapka function aur uske variables ka ek backlink bnaya jaata hai aur uska naam hota hai [[environment]]
+
+function countforme()
+{
+    let c = 0;
+    return function() {
+        c++;
+        console.log(c);
+    };
+}
+
+let fnc = countforme();
+fnc();
+fnc();
+fnc();
+
+let fnc2 = countforme();
+fnc2();
+fnc2();
+fnc2();
+
+
+======================
+
+//this keyword
+
+//this keyword special keyword hai, kyuki jaise ki baaki saare keyword ki value ya unka nature same rehta hai this ki value ya nature badal jaata hai is baat se ki aap usey kaha use kar rahe ho
+
+global - window
+function - window
+method with es5 function - object
+method with es6 arrow function - window
+es5 function inside es5 methos - window
+arrow function inside es5method - object
+event handeller - element
+class -blank object
+
+==================================
+
+//call apply bind
+
+//function ko call karte waqt aap set kar sakte ho ki uski this ki value kya hogi
+
+
+let obj = {
+    name: "harsh",
+};
+
+function abcd()
+{
+    console.log(this);
+}
+
+abcd.call(obj);
+
+========================================
+
+//apply mei aap sirf do arguments bhej sakte ho, ek hai thius ki value kya rakhni hai aur dusra hai array of parameters
+
+let obj = {
+    name: "harsh",
+};
+
+function abcd(a, b, c)
+{
+    console.log(this);
+}
+
+abcd.apply(obj, [1,2,3]);
+
+================================
+
+//bind ek function naya function return karta hai, aur vo same hota hai call jaise
+
+=================================
+
+object oriented javascript
+
+//humein seekhna factories banaana, matlab ki aap ek baar blueprint bana do ki har object kaise dikhega and hum log naye objects with different values bana paayege, yahi upar upar se poora kaam hai oops mein
+
+=================================
+
+//constructor functions
+
+function CreatePencil(name, price, color, company)
+{
+    this.name = name;
+    this.price = price;
+    this.color = color;
+    this.company = company;
+}
+
+let pencil = new CreatePencil("Nataraj", 10, "black", "nataraj");
+
+=================================
+
+abhi function constructors mein shared memory for common variables ke liye ham use karte hai
+
+Createpencil.prototype.company = "amazon";
+
+================================
+
+agar tumhaara constructor function koi field apne prototype par attach karle to us constructor se banne wale sabhi new instnces yaani ki objects ke pass wo field automatically chali jaati hai
+
+===================================
+
+function CreatePencil(name, price, color, company)
+{
+    this.name = name;
+    this.price = price;
+    this.color = color;
+    this.company = company;
+}
+
+CreatePencil.prototype.write = function (text) {
+    let h1 = document.createElement("h1");
+    h1.textContent = text;
+    h1.style.color = this.color;
+    console.log(h1);
+    document.body.append(h1);
+};
+
+let pencil = new CreatePencil("Nataraj", 10, "black", "nataraj");
+
+====================================
+
+//classical inheritance
+classes banana aur une extend karna
+
+=============================
+
+//prototypal inheritance
+
+ek object hai aap chaho to uski saari props/methods koinherit kara dete ho doosre object mein
+
+let a = {};
+let b = Object.create(a);
+
+===========================
+ES6 classes
+
+class CreatePencil{
+    constructor(name, company, price, color){
+    this.name = name;
+    this.company = company;
+    }
+
+    write(text){
+        let h1 = document.createElement("h1");
+        h1.textContent = text;
+
+    }
+}
+
+//creating object using new keyword          
+
+class Admin extends CreatePencil{
+    constructor(...)
+    {
+        super(...);
+    }
+};
+
+===========================
+
+Execution approach -> abstract
+
+clousre khatama hone ke badh bhi preserve rahte hai
+
+function jo object ke andhar honusse method kahite hai
+
+new keyword ek blank object banata hai
+
+call apply bind
+
+apply main sirf two parameters ate hai, ek hai ek this keyword aur baki sabh parameters array mai
+
+Bind aur call same hai
+
+bind sirf function return karta hai
+
+=======================
+sync async
+
+koi bhi code js mein line by line chalega aur ye natural pattern bhi hota hai ki code line by line chale, but kabhi kabaar aise cases aate hai life mein jaha par aapka code wait karta hai and utni der mein agla code chal jaata hai
+
+//aisa code jo line by line chale hota hai synnc code
+//aisa code jo jab chalne ke liye ready ho jaaye tab chale wo hai async
+
+//ek function ko agar aap ek aur function bhej de rahe ho parameter mein, to wo parameter waala function kehlaata hai callback
+
+function kuchderbaadchalunga(fnc) {
+    setTimeout(fnc, Math.floor(Math.random() * 20) * 1000);
+    
+    kuchderbaadchalunga(function(){
+    console.log("hey");})
+}
+
+
+==============================
+//callback
+
+iska matlab hai jo function kahi to declare hai wo mera data le raha hai, aur jabh operationns complete ho jaye tabh ye functionn call kar dena usme data written karne ke badh
+
+//callback hell
+
+jo nested pattern hai use callback hell kahte hai
+function passmeinfo(username, cb) {
+            setTimeout(function () {
+                console.log("Fetching username....");
+                cb({username});
+            }, 2000);
+        }
+
+        function profilelekeaaoe(username, cbb) {
+            setTimeout(function () {
+                cbb({
+                    user_id: 123,
+                    username,
+                });
+            }, 2000);
+        }
+
+        passmeinfo("saish", function (dets) {
+            profilelekeaaoe(dets.username, function (obj) {
+                console.log(obj);
+            });
+        })
+
+========================================
+=======================================
+
+//promises
+
+aap ek promise banaate ho jo ki do states mein se ek state me jaa sakta hai and wo yaa to resolve hoga ya to reject hoga ab wo kya hoga ye to waqt bataayega par humein dono ke liye code likhna padta hai
+
+===========================
+promise, resolve, reject, then, catch, async wait, error handelling with try-catch
+
+===================
+
+fetch api + http basics
+
+//fetch api get, post, 
+
+fetch api - ham kisi data ko manga sakte hai kisi url se
+
+random user apis
+
+
+=====================
+
+implicit return 
+(() => ) //without using arrows
+
+====================
+
+http response status codes
+
+successful resonses (200-299)
+
+=====================
+GET, POST basics
+headers, status codes
+
+JSON Parsing
+
+==========================
+form sending via fetch
+
+let form = document.querySelector("form");
+let name = document.querySelector("#name");
+let email = document.querySelector("#email");
+let password = document.querySelector("#password");
+
+form.addEventListener("submit", function (evt) {
+evt.preventDefault();
+fetch("url", {
+method: "POST",
+body: JSON.stringify({name,
+email,
+password,}),
+}};
+});
+
+

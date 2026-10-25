@@ -1,0 +1,758 @@
+keywords
+variables
+-var es5
+-let (changing values) es6
+-const es6
+
+a = 12; --no error but not appreciated
+var a;
+var a = 12;
+let a;
+const a = 12;
+const a; -- error
+
+//declaration and initialization (first value)
+
+var a = 12; //window mein add hota hai
+//function scoped hota hai
+//aap firse declare kr sakte ho same name se and error nahi ayega
+
+//var not not to use
+
+//scope (global, block, functional)
+
+var doesnot respect bocks
+
+//reassignment and redeclaration
+
+//temporal dead zone - utnsa area jitne main js ko pata hai ki variable exist hai par wo apko value nahi de sakts, cannot saccess value before initilalization, this is for let declared variable, for var it gives undefined
+
+//hoisting impact per type,
+
+//hoisting -> ek variable ko jab js mein bannate  hain to wo varibale do hisso main toot jaata hain and uska declare part upar chala jaata hai and uska initialization part neeche reh jata hain
+
+var a = 12;
+var a = undefined; (goes on top)
+a = 12;
+
+var -> hoist -> undefined
+let -> hoist -> reference error
+const -> hoist -> reference error
+
+
+var x = 1 //global scoped
+{
+   var x = 2; //global
+}
+console.log(x);
+ // prints 2
+ 
+ let a = 10;    //block and global scoped
+{
+    let a = 20;   //if not this below console looks for outside a
+    console.log("Inside: ", a);
+}
+
+console.log("Outside: ", b);
+
+const object properties can be updated\
+
+
+===================================
+
+data types
+- primmitves - copy karne par real copy milti hai
+//string, number, boolena, null, undefined, symbol, bigint.
+
+
+- references - cant directly copy,we get reference to the parent, contain brackets
+//arrays, objects, functions
+
+arrays - []
+objects - {}
+functions - {}
+
+
+'' - single quotes
+"" - double quotes
+`` - backticks
+
+null - null  ka matlab hai appne jaan boojh kar voi value nahi di
+
+underdefined ka matlab hai ki aapne ek variable banaya aur usey value nahi di to jo value by default mili wo hai undefined
+
+symbol -> unique immutable value create karta hain (non changing)
+
+//future main hum koi libraries use karege ab is case mein un libraries mein kai baar kucch fields hoti hai jisme similar hum bhi banaa dete hai aur galti se humari banaai hui fields us library ki original fields ko change kar deta hai
+
+//through symbol we can create unique value and keep it somewhere as an identifier
+
+let u1 = Symbol("uid");
+
+bigint , Number.MAX_SAFE_INTEGER there is a limit to an integer ok, 
+
+so let a = 9007199254740991n //using like this way
+
+=================================
+
+//Dynamic typing -> js mein static typing nahi hai and yaha par hai dynamic typing
+jiska matlab hai aap data ko change kar sakte ho kyunki yaha par dynamic data types hai
+
+
+//typeof tells the type of data
+
+typeof null -> 'object' //this is only quirk
+
+typeof NaN -> 'number'
+
+
+NaN == NaN //false it is a quirk
+
+
+=================================
+
+TYpe coercion -> concept jismein aapka ek type automatically convert hojayega
+
+"5" + 1 -> concatenation '51'
+
+if any one of the operands is a string javascript converti it into a string
+
+"5" - 1 -> 4
+
+
+===============================
+
+Truthy vs falsy values
+
+//0 false "" null undefined NaN document.all; 
+this are all falseother are treated as trure
+
+!!0 //to check
+
+======================================
+NaN is a failed mathemetiacal operation like 2 * "Saish", it is a number operstion only so typeof NaN -> 'number'
+
+=====================================
+
+Operators
+
+Arithmetic // + - / * % **
+1 + 2 = 3
+"ha" + "rsh" = 'harsh'
+
+12 -2 = 10
+12/6 = 2
+12*2 = 24
+12%2 = 0
+2**3 = 8
+
+Comparison // = == === != !== <= >= < > 
+12 == 13 //false
+12 == "12" //true
+12 === "12" //false
+
+12 != 13 // true
+12 != "12" //false not strict
+
+12 !== "12" //true, strict
+
+
+
+Logical // && || !
+true && true 
+
+
+Assignment // = += -= *= /= %=
+let a = 12
+
+Unary // + - ! typeof ++ --
++"10" -> 10
+
+
+Ternary 
+
+?:
+
+condition ? if true code : if false code
+
+====================================
+
+typeof null -> 'object'
+typeof [] -> 'object'
+
+a instanceof Array -> true
+let b = {}
+b instanceof Object -> true
+
+b instanceOf Array -> false
+
+variable instanceof kya variable iss identity ka part hai,
+
+instanceof hamesha use hota hai reference ke sath and type of hota hai primitive values ke sath
+
+================================
+console.log(2,5) -> 2 5
+
+
+
+==========================================
+//control flow
+if else
+else if
+
+======================================
+
+
+switch(val)
+{
+    case 1:
+        break;
+    case 2:
+         break;
+    default:
+}
+
+
+==============================
+//early return pattern
+
+usin return keywords
+
+
+
+=======================================
+//loops repeat karne ko loop kahte hai
+
+//for while do-while forin forof foreach
+
+//kaha se jaana hai -> kaha tak jaana hai -> kaise jaana hai
+//for
+for(start; end; change)
+{
+
+}
+
+for(let i = 1; i < 101; i++)
+{
+
+}
+======================================
+//kaha se jaana hai  -> kab rukna hia -> kaise jaana hai
+//while
+
+start
+while(end)
+{
+///code
+change
+}
+
+===============================
+
+let i = 1;
+do
+{
+console.log(i);
+i++;
+}
+while(i < 2)
+
+========================================
+ break, continue
+ 
+ ================================
+ to get dynamic vlaues int the string use ${};
+ 
+ for(let i = 0; i < 11; i++)
+ {
+     console.log(`5 * ${i} = ${5 * i}`);
+}
+
+==================================================
+
+to take input use 
+
+let var = prompt("Enter a number");
+
+===================================
+
+Math.floor() takes digit before the decimal part only
+
+=========================================
+functions
+//agar code likha diya to wo turant chal jaata hai
+
+
+//we can also run the same code n number of times 
+
+
+=========================================
+
+functonn cannot strat with numbers
+//function declaration/ statements
+function functionname()
+{
+
+}
+
+2.method
+
+//function expression
+let fnc = function()
+{
+
+}
+
+fnc();
+
+//fat arrow function
+let fnc = () => {
+   console.log("HI");
+}
+
+========================================
+
+functions with parameters and arguments
+
+========================================
+
+if arguments are not passed but parameters are declared in that case undefined is printed
+
+if undefined + undefined it gives NaN
+
+=================================
+//default  parameters
+function add(v1 = 0, v2 = 0)
+{
+     console.log(v1 + v2);
+}
+
+add(1,2);
+
+=============================
+//jab arguments kai saare ho to humein utne hi parameter banaane padege, isssey bachne ke liye , hum rest ka use karte hai ... agar ... functionn ke parameter space mein lage to wo rest operator hai agar wo arrays and objects mein lage to wo spread operator hai
+
+function abcd(...val)
+{
+    console.log(val);
+}
+
+abcd(1,2,3,4,5,6,7,8,9,10);
+
+function abcd(a,b,c,...val)
+{
+
+}
+ abcd(1,2,3,4,5,6);
+ 
+ 
+ ============================================
+ 
+ return matlab jaha se aaye ho wahi dall denge
+ 
+ function abcd()
+ {
+     return 12;
+}
+
+let val = abcd();
+
+======================================
+
+//first class function -> functions ko values ki tarah treat kar sakte hai
+
+//matlab jaha  jaha values ja sakti hai vaha vaha functionns bhi ja sakte hai
+
+let abcd = function()
+{
+
+}
+
+function abcd(val){
+     val();
+}
+
+abcd(function(){
+    console.log("Hi");
+})
+
+
+===============================================
+//higher order function hota hai jo ki return kare functionn ya fir accept kare ek function apne parameter mein
+function abcd()
+{
+    return function()
+    {
+        console.log("Hey");
+    }
+}
+
+abcd()();
+
+==================================
+//pure vs impure function
+
+//aisa function jo ki bahar ki value ko naa badle wo hai pure function
+
+let a = 12;
+function abcd() //pure function
+{
+console.log("Hey");
+}
+
+
+let a = 12;
+function abcd() //impure function
+{
+a++;
+}
+//aisa function jo bahaar ki value ko badal de wo hai impure functions
+
+==================================
+//closures -> ek function jo return kare ek aur function aur return hone wale functionn hamesha use karega parent function ka koi varibale
+
+function abcd()
+{
+    let a = 10;
+    return function(){
+        console.log(a);
+    }
+}
+
+=======================================
+lexical scoping -> the physical limit of a variable in a function
+
+function abcd()
+{
+    let a = 12;
+    function def()
+    {
+        let b = 18;
+        function jhi()
+        {
+            let c = 20;
+        }
+    }
+}
+
+===================================
+
+IIFE (Immediately invoked functionn expressionns)
+(function(){
+    console.log("Hi javascript");
+})();
+
+==================================
+Hoisting differences between declaration and expression
+
+hoisting works in declaration
+abcd();    //works here
+
+function abcd()
+{
+console.log("Hi");
+}
+
+
+//hoisting does not works in expressions
+abcd();   //not work here
+
+let abc = abcd() //same for var
+{
+console.log("Hi");
+}
+
+
+========================================
+if function returns nothing it returns undefined
+
+======================================
+
+/a counter that can hold its value
+
+function counter()
+{
+    let count = 0;
+    return function()
+    {
+        count++;
+        return count;
+    }
+}
+
+let c = counter();
+console.log(c());
+console.log(c());
+console.log(c());
+console.log(c());
+
+=================================
+thorugh IFEE we can create secret or private variables that are accessible within the functions but not outside.
+
+
+================================
+arrays in javascript  in this we can keep different data of different or similar type together
+
+let marks = [1,2,3,4];
+
+accessed using the index numbers
+
+marks[50] -> undefined
+
+let arr = [];
+let arr = new Array();
+
+//to modify bthe array
+arr[3] = 12;
+
+1) arr.push(7000);
+2) arr.pop();
+3) arr.shift(); removes first array element
+4) arr.unshift(2); adds values to first
+5) arr.splice(index from which to remove element, how many elements to remove);
+if we want to insert then
+
+arr.splice(1,0, "Red", "BLue")
+
+
+6) let newarr = arr.slice(0,3); // copy elements form index 0 to 2 and insert it in the given array
+7) arr.reverse(); //reverses the original array
+8) let sr = arr.sort(function (a,b){
+            return b-a; // sorts in descending
+            //a - b sorts in ascending
+});
+
+if just arr.sort() is written then it sort in the alphbetically order for strings only.
+
+for number data type the function must be provided or it will compare it in the string.
+
+
+================================================
+
+sort, map , foreach, reduce each one of them accept one function and the function generally 
+
+
+=========================
+
+arr.forEach(function (val)
+{
+     console.log(val);
+});
+
+====================
+// map srf tab use karna hai jab aapko ek naya array banana hai pichle array ke data ke basis par
+
+//map dikhte hi sath man mein ek blank array  bana liya karo
+
+let newarr = arr.map(function(val)
+{
+    return 12;
+})
+
+//jab bhi apko aisa koi case dikh jaaye jaha par ek array se naya array banega and wo naya array kuchh values ko rakhega tab map lagega
+
+===========================================
+
+arr.filter(function (val)
+{
+    if (val < 4) return true;
+})
+
+================================
+
+let arr = [1, 2, 3, 4, 5, 6]
+
+let ans = arr.reduce(function (accumulator, val){
+return accumulator + val;
+}, 0);
+
+
+==============================
+
+let ans = arr.find(function (val)
+{
+    return val === 1;
+});
+
+
+===========================
+
+let any = arr.some(function(val)
+{
+    return val > 85;
+});  //if anyone follows then returns true
+
+
+=============================
+let eve = arr.every(functionn (val)
+{
+    return val > 15;
+});  //if everyone follows then returns true
+
+
+====================================
+destructuring 
+let arr = [1,2,3,4,5];
+let [a,b,,c] = arr;
+
+spread operator
+let arr = [1,2,3,4,5,6];
+let arr1 = [...arr]; //to copy without reference
+
+==========================
+//use rest parameter to accept any number of scores and return the total.
+
+
+========================================
+
+objects
+
+we use objects when we want an information of one entity and talking for many entities we use arrays
+
+let obj = {}; //blank object
+
+let obj = {
+    name: "harsh",
+    age: 26,  
+    khanna: 'daal chawal',
+
+};
+
+the values are accessed using . opearator
+obj.age,  //to find property age in the property
+obj.name,
+
+obj['name']
+
+let aa = 'name';
+
+the obj[aa] can be accessed like obj['name']
+
+=================================
+key value pair, 
+dot vs bracket opertor
+
+//nesting and deep access
+const user = {
+    name: "Harsh";
+    address: {
+        place: "haridwar";
+        pin: 416510;
+        location: {
+            lat: 100;
+            long: 50;
+        },
+    },
+};
+
+long accessed using user.address.location.long;
+
+================================
+//destructuring
+
+let {lat, lng} = user.address.locations;
+
+
+========================
+//for-in
+
+let obj = {
+    name: "saish",
+    age: 20;
+    email: "saish@gmail.com"
+};
+
+for (let key in obj)
+{
+    console.log(key);
+}
+
+for(let key in obj)
+{
+     console.log(key, obj[key]);
+}
+
+========================
+//Object.keys
+
+it returns an array having all the keys of our object
+
+Object.keys(obj);
+
+=============================
+//Object.entries(obj);
+
+returns an array of arrays
+
+===========================
+//spread operator
+let obj2 = {...obj};
+
+===================
+
+let obj2 = Object.assign({extra-keyvalues iof any}, obj);
+
+
+================================
+//deep cloning
+if the object containsn the nested key values pair then copying the object only copies outer elements and the reference of the nested objects is oassed so using deep cloning
+
+using JSON.stringify(obj) to convert it into a string and then passing it to JSON.parse() to convert it into its orignal form
+
+let obj2 = JSON.parse(JSON.stringify(obj));
+============================
+
+//optional chaining
+
+obj?.address?.city;
+
+sometimes the property can exit sometimes not.
+
+======================================
+
+computed properties
+
+let role = "admin";
+
+let obj =
+{
+ // using it with square braces
+ [role] = "saish";
+
+}
+
+//an object key can be a number and a boolean
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,537 @@
+DOM Document object model
+
+DOM manipulation
+//body tag ke andar jo bhi kuch likh rahe hai wo DOM hai
+//DOM tree structure
+
+abhi ke liye DOM == <body>
+
+=========================
+
+//dom manipulation
+// html se element select karna
+//text badalna
+// html badalna
+// css badalna
+// attribute
+// event listeners
+
+
+
+========================================
+
+selecting elements
+getElementById, getElementsByClassName, querySelector, querySelectorAll
+
+let h = document.getElementById("id") 
+console.log(h); 
+
+if class name is available, then class name can be given for many elements so,
+document.getElementsByClassName("class") return an array 
+
+===================================
+querySelector() selects the first element in the body for which the tag is provided in the brackets.
+
+let  abcd = document.querySelector("h1");
+
+console.dir();
+
+.querySelectorAll() returns an array like data havinng all the nodes tags as in the brackets
+
+=====================================
+let h = document.getElementsByClassName("abcd");
+console.log(h);
+
+let j = document.querySelector("h1");
+console.dir(j);
+=======================================
+//text content access: innerText, textContent, innerHTML,
+
+j.textContent and j.innerText changes the text ok
+
+innerHTML chnages the html code in the node
+
+j.innerHTML = "<i>HI Saish</i>";
+
+========================================
+//attribute manipulation : getAttribute, setAttribute, removeAttribute
+
+tag ke name alava jo kuch bhi ho vo attributes hote hai
+
+==========================================
+
+// let j = document.querySelector("h1");
+
+// j.innerHTML = "<i>HI Saish</i>";
+// console.dir(j);
+
+// let j = document.querySelector("a");
+// console.log(j);
+
+// j.href = "https://www.google.com"
+
+let j = document.querySelector("img");
+j.setAttribute("src", "back.jpg");
+
+==============================
+getAttribute();
+let j =  document.querySelector("a");
+console.log(j.getAttribute("href"));
+
+j.removeAttribute("href");
+console.log(j.getAttribute("href"));
+==================================
+
+//Dynamic DOM manipulation: createElement, appendChild, removeChild, prepend
+
+first create element and then either append or prepend it
+
+let h1 = document.createElement("h1");
+h1.textContent = "saish";
+
+console.log(h1);
+
+document.querySelector("body").append(h1); //adds at the last of the body
+// document.body.prepend(h1);
+
+let h1 = document.createElement("h1");
+h1.textContent = "saish";
+
+console.log(h1);
+
+document.querySelector("body").append(h1);
+// document.body.prepend(h1);
+
+let h2 = document.querySelector("h1");
+h2.remove();
+
+=============================================
+let h1 = document.createElement("h1");
+h1.textContent = "Mai aya hu";
+
+document.querySelector("div").append(h1);
+
+
+
+
+===========================================
+
+//js se css badalna
+
+let h1 = document.querySelector("h1");
+console.log(h1);
+
+h1.style.color = "red";
+h1.style.backgroundColor = "blue";
+
+============================
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style> 
+    .hulu{
+        color: red;
+        font-family: "Gilroy";
+    }
+</style>
+<body>
+    <h1 class="hulu"> Hi!! Welcome </h1>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+=============================
+
+let h1 = document.querySelector("h1");
+
+console.log(h1.classList);
+
+h1.classList.remove("hulu");
+h1.classList.add("hulu"); //this is prefereable
+h1.classList.toggle("hulu");
+
+element node are actual html tags
+text nodes represent the content between those.
+=============================
+
+while taking id form the query selector use hash (#)
+
+while  using querySelectorAll to select with class use (.)
+
+======================================
+textContent is faster and gives all hidden text also, but innerText does not give and is slow
+
+
+====================================
+
+in a document.querySelectorAll("ul li:nth-child(2n)");
+
+=======================================
+
+Events listener
+browser mein page par koi bhi harkat karo event raise ho jayega
+
+
+//kuch screen par ho aur appko reaction dena ho to us waqt appko event handle karna aana chahiye
+
+//event listener ka matlab hai apne koi action ka reaction diys
+
+/to change the font color of a heading once tapped
+let h1 = document.querySelector("h1");
+h1.addEventListener("click",function(){
+    h1.style.color = "red";
+});
+
+//click
+//input
+
+//change event tab chalta hai jab apka koi input select ya textarea main koi change hojaaye
+
+let fileinp = document.querySelector("#fileinp");
+        let btn = document.querySelector("#btn");
+        document.querySelector("#btn").addEventListener("click", function(data)
+    {
+        fileinp.click();
+    });
+
+    fileinp.addEventListener("change", function(data){
+        console.log(data);
+        const filen = data.target.files[0];
+        if(filen)
+    {
+        btn.textContent = filen.name;
+    }
+    });
+    
+    ============================
+    
+let form = document.querySelector("form");
+
+    form.addEventListener("submit", function(data){
+        data.preventDefault();    //forms submit but no reload
+    });
+    
+    
+   =====================
+   keydown event
+   
+   let h1 = document.querySelector("h1");
+        window.addEventListener("keydown", function (det) {
+            if (det.key === " ") {
+                h1.textContent = "SPC";
+            }
+            else {
+                h1.textContent = det.key;
+            }
+        });
+        
+        ============================
+        
+        
+form event 
+
+form.addEventListener("submit", function(data){
+        data.preventDefault();    //forms submit but no reload
+        
+        let main = document.querySelector("#main");
+
+        let card = document.createElement("div");
+        card.classList.add("card");
+
+        let profile = document.createElement("div");
+        profile.classList.add("profile");
+
+        let img = document.createElement("img");
+        img.setAttribute("src",inputs[0].value);
+        
+
+        let h3 = document.createElement("h3");
+        h3.textContent = inputs[1].value;
+        
+        let h5 = document.createElement("h5");
+        h5.textContent = inputs[2].value;
+
+        let p = document.createElement("p");
+        p.textContent = inputs[3].value;
+
+
+        profile.appendChild(img);
+        card.appendChild(profile);
+
+        card.appendChild(h3);
+        card.appendChild(h5);
+        card.appendChild(p);
+
+        main.appendChild(card);
+
+        inputs.forEach(function(inp){
+            if(inp.type !== "submit")
+        {
+            inp.value = "";
+        }
+        })
+    });
+    </script>
+</body>
+
+</html>
+
+
+==============================================
+
+mouseover and mouseout events listener
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Gilroy";
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body{
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* never use this on body but on main tag */
+
+        #abcd {
+            position: absolute;  /*  without this the div will not move */
+            transition: all cubic-bezier(0.19, 1, 0.22, 1) .2s;
+            background-Color: red;
+            height: 400px;
+            width: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="abcd">
+
+    </div>
+    <script>
+        let abcd = document.querySelector("#abcd");
+
+        window.addEventListener("mousemove", function (dets) {
+            abcd.style.top = dets.clientY + "px";
+            abcd.style.left = dets.clientX + "px";
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+
+===========================
+========================
+==================
+
+Event object 
+
+abcd.addEventListener("click", function(dets){
+});
+
+here dets is called the event object
+
+Target == the element on which the event was triggered is called the target.
+
+here abcd is the target because on that the event was triggered
+
+type == the type of event
+
+preventDefault() avoids the form from being reloading
+
+===============================
+===============================
+Event bubbling and capturing
+
+
+//jispe event aayega agar uspar listnere nahi hua to humara event uske parent par listener dhudenga aur aisa krke krte upar ki taraf move karega
+
+child trigger event then flows  towards parent if they have
+
+
+=========================
+Event captuirng
+
+jab bhi aap click krte ho ya koi bhi event raise krte ho to aapka jo event flow do phases mein chalta hai:
+
+phase 1: event top  level element se neeche ki taraf aayega,
+phase 2: event raised element  se parent ki taraf jaayega 
+
+aur pahle phase 1  hoti hai
+
+humesha phase 1 hi pahle hoti hai par vo by default off rahti hai, aggar hum usey on kar dein to pahle phase 1 ka answer milega
+
+how to add capture phase on
+
+a.addEventListener("click", function(), true);
+
+
+=====================================
+
+
+Events vs listener
+
+jo click, mouseover , ye sabh events hai
+jo functions hai jo actions lete hai vo listener hai
+
+
+======================================
+form validation
+reading values form text , text area, 
+let nm = document.querySelector("#name");
+        let form = document.querySelector("form");
+
+        form.addEventListener("submit", function (dets) {
+            dets.preventDefault();
+
+            if (nm.value.length <= 2) {
+                document.querySelector("#hide").style.display = "initial";
+            }
+            else {
+                document.querySelector("#hide").style.display = "none";
+            }
+        });
+        
+        =========================
+        
+        inline validation
+        
+        like required, minlength, maxlength
+
+===============================================
+pattern = "[a-z]{3,8}"
+
+regex
+form.addEventListener("submit", function (dets){
+    dets.preventDefault();
+    const regex = /^[a-zA-Z0-9_]{3,10}$/;
+    let ans = regex.test("aa_a");
+    console.log(ans);
+})
+
+
+================================================
+=============================================
+Timers and intervals
+
+sets delays to a code setTimeout setTimeout(function () {
+            console.log("Hello");
+        }, 5000);
+        
+        ==============
+        
+amke a loop run after set time interval
+setInterval(function () {
+            console.log("Hello");
+        }, 5000);
+        
+        
+=============================
+let tm = setTimeout(function () {
+            console.log("Hello");
+        }, 5000);
+        
+clearTimeout(tm);
+clearInterval(tm);
+
+
+
+======================================
+=====================================
+
+//localStorage -> apke browser ke andar data store karna jo ki browser band hone par bhi delete nahi hioga
+
+//sessionstorage -> ye aapka  data temporarily store karta hai matlab ki tab band hua aur data gaya
+
+//cookies -> ye bhi data store karta hai and aapka data browser ke cookies naam ki property main save hota hai and ye cookie concept kam data ya light data ke liye hota hai
+
+=========================================
+
+//localStorgae
+//store kaise kare
+//data fetch kaise kare
+//remove kaise kare
+//update kaise kare
+
+to store 
+localStorgae.setItem("name","saish");
+
+to fetch
+localStorage.getItem("name");
+
+to remove
+localStorage.removeItem("name");
+
+to update
+localStorage.setItem("name","harshita");
+
+===================================
+sessionStorage  works for temporarily having of the data till the tab remains active, 
+functins same  as the llocalStorage
+
+sessionStorage.clear() clears all  stored in the database
+
+
+========================================
+
+//cookies
+
+browser meinn chhota datav store karne kke  liye cookies ka istemaal hota hai
+
+cookies ~4kb
+localStorage, sessionStorage - ~5MB
+
+cookies mein jo bhi data store karoge wo data page reload par  automatically server par jaayega
+
+document.cookie ="email=saish@gmmail.com"
+document.cookie = "age=12"
+
+
+=================================
+In local storage we can only save strings no arrays, no objects
+
+so we need to convert other types into string using JSON.strigify();
+
+, the fetch items also gives us a string, 
+to bring from string to its natural form we use JSON.parse();
+
+===========================
+let newUsers = users.filter((user) => {
+    return user.name.startsWith(inp.value);
+  });
+  
+  =======================
+  debouncing creates a delay to reduce the number of requests being sent
+  
+
+
+

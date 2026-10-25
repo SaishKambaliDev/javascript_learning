@@ -1,0 +1,237 @@
+//Design patterns
+
+apko apna code optmize tarke se, modular likhna hai
+
+//module pattern (IIFE)
+//revealing module pattern
+//factory function pattern
+//observer pattern (basic pub-sub)
+
+IIFE - immmediactely invoke functionn expression
+
+module pattern ek design pattern hai jisme hu apna code ek self executing function (IIFE) ke andar likhte hai, taki variables aur functions private rahen
+Iske andar se hum sirf wahi cheezein return karte hain jo bahar use karni hain.
+is pattern ka main fayda hai data hiding (encapsulation) aur clean structure, taaki code secure, reusable aur manageable ban sake
+
+module patterns ke andar apko sabkuch IIFE mai likhna padta hai, uske andar jo kuch bhi likhoge vo private ho jata hai, aur aapka jo kuch access karna hai vo appka iife se return karna padta hai object through
+
+========================
+
+Revealing module pattern me ham object ko jism naam se bhejna hai vo bhej sakte hai 
+
+===========================
+
+//factory function pattern
+
+ek function 
+banate ho jo objects create karta hai (factory = objevt banane ki machine)
+
+factory function pattern ek aisa design pattern hai jisme hum ek simple function likhte hain jo naye objects banakar return karta hai, bina class ya new keyword use kiye
+
+is pattern ka main idea hai object creationn ko ek function ke through control karna
+
+har baar jab tum factory function call karte ho, tumhe ek naya object milta hai jisme apnne methods aur (agar chaho to ) private data ho sakta hai
+
+yeh  pattern specially useful hai jab tumhe ek hi type ke bohot saare objects chahiye jaise users, products, tasks etc
+
+function createProduct(name, price){
+    let stock = 10;
+    return {
+        name,
+        price,
+        checkStock() {
+            console.log(stock);
+        },
+        buy(qty){
+            if(qty <= stock)
+            {
+                stock -= qty;
+                console.log(`${qty} pieces booked - ${stock} pieces left.`);
+            }
+            else{
+                console.error(`we only have ${stock} pieces left.`);
+            }
+        },
+        refill(qty){
+            stock += qty;
+            console.log(`refilled the stock - ${stock} pieces now.`);
+        },
+    };
+}
+
+let phone = createProduct("phone", 700000);
+phone.buy(6);
+
+
+==============================
+
+THE MAIN GOAL IS TO REUSE THE CODE WRITTEN
+
+===============================
+
+Debouncing and throttaling
+
+ek event bahut der tak hua aur ruk gaya tabh debouncing hota hai
+
+aur throttaling matlab jabtak event hota rahega ek predefined interval tak output dete rahena aur jabh event bandh ho jayega tabh tum bhi rukna
+
+===============================
+
+debouncing -> aap koi action kar rahe ho and aap ye nahi chaate har action pe kuch ho, jab bhi mere actions ke beech mei koi specific gap aajaye to fir action perform ho
+
+
+let input = document.querySelector("input");
+
+function debounce(fnc, delay){
+    let timer;
+    return function(...args){
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            fnc(...args);
+        }, delay);
+    };
+}
+
+input.addEventListener("input", debounce(function () {
+    console.log("ran");
+}, 1000)
+);
+
+=======================================
+
+debounce ->  ek delay bataaoge tum utna delay jab bhi aayega action ka reaction milega
+
+throttle -> interval par chaluga , action agar hota raha and aapne ek interval bataye tio utne interval me aapka event chalega
+
+======================================
+
+Lazzy loading images with intersection observer
+
+scroll down to see the images only when they enter the viewport
+
+kisi bhi attribut ke same 'data-' likhne se javascript mai tum uski value access kar pate ho
+
+<img data-src="img.jpg">
+
+===================================
+
+Code splitting matlab javascript files ka full  heavy codes load karne ki bhajah jo code user ko abhi required hai sirf utna code use karneka,
+isme code ko split kiya jata hai, jo pahile required hai vo pahile load hote hai aur bakike code jaise chahe vaise load hote hai
+
+we can only do import export byb using this 
+<script type="module" src="script.js"></script>
+
+==============================
+
+//avoiding unnecessary reflows and repaints
+
+har bar javascript se ham DOM Ko update karte hai to DOM har baar load hota hai, to issase website slow hoti hai, to ye rokne ke liye, 
+
+document.createDocumentFragment(); hota hai jo sare elements ko ek sath ek memory space mai load karta hai aur baad mei dom mai copy kart ahai isase dom har bar load nahi hote rahita
+
+const ul = document.querySelector("ul");
+const space = document.createDocumentFragment();
+
+for(let i = 0; i < 100000; i++)
+{
+    const li = document.createElement("li");
+    li.textContent = i;
+    space.appendChild(li);
+}
+
+ul.appendChild(space);
+
+===================================
+Memory leaks : timers , event listeners
+
+let cnt = 0;
+let int = setInterval(function(){
+    if(cnt < 10)
+    {
+        cnt++;
+    console.log(cnt)
+    }
+    else{
+        clearInterval(int);  //even if the if statement finsihes the setTimerval remains so we should clear it to prevent memory leaks
+        console.log("finished");
+    }
+}, 500);
+
+=================================
+
+DOM ka code and logic ka code alag rehna chahiye
+
+this is called separeation of concerns
+
+separatio of concerns separates the DOM and the logic (like calculation logic) separatley ok
+
+=====================================
+
+let ul = document.querySelector("ul");
+let btn = document.querySelector("button");
+
+function add(num1, num2)  //added the mathematical logic separate
+{
+    return num1 + num2;
+}
+
+btn.addEventListener("click", function(){
+    let num1 = Math.floor(Math.random() * 10);
+    let num2 = Math.floor(Math.random() * 10);
+
+    let sum = add(num1, num2);
+
+    let li = document.createElement("li");
+    li.textContent = sum;
+
+    ul.appendChild(li);
+});
+
+===============================
+
+custom utilities (own implementation of map, deep clone)
+
+map ek array ke top pe chalta hai and us array ke sabhi members us map function ke andar aate hai and map function ek naya array return krta hai and us naye array mein jo bhi map ne return kiya hoga wahi placed hot hai
+
+=================================
+
+//deep cloning, deep copy and shallow copy
+
+==================================
+
+how JS works in browser (Event loop, web APIs, call stack)
+
+call stack -> execution stack
+
+JS single -threaded hai -> ek timr par ek hi taam karta hai (ysnchronus)
+Jab tum function call karte ho -> wo stack ke top pe chala jata hai.
+Function complete hone ke baad stack se nikal jata hai (pop ho jata hai).
+
+call stack matlab simply function execute hone ka order aur return hone ka order
+
+
+=====================================
+
+Wrb APIs
+thhode features jo browser hame de, hhum usse web apis kahte hai
+
+ex: console, setTimeout, setInterval, alert, prompt
+//js ka part nahi hoti hai
+
+=============================
+
+Event loops
+
+There are two type of tasks in javascript
+1) Synchronus
+2) Asynchronus
+
+web apis ke through jo bhi run kartr hai wo complete hone par hum unhe, callback queue (also called task queue) mai dalte hain
+
+setTimeinterval complete hone ke baad call stack (isme jo hota hai wahi run hot ahai) main nahi jata balki task queue mai rahta hai, jab call stack khali ho tabhi hi usme jaata hai,
+
+event loops ka kaam hai conntinuosuly check karna ki call stack khali hai ki nahi
+
+==============================
+
+
